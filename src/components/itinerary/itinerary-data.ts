@@ -9,6 +9,8 @@ export type ItineraryItem = {
   imageSrc?: string;
   imageAlt?: string;
   internalHtml?: string;
+  highlight?: boolean;
+  stamp?: string;
 };
 
 export type ItineraryDay = {
@@ -38,6 +40,8 @@ export const day1Items: ItineraryItem[] = [
     mapsUrl: "https://maps.app.goo.gl/DWfEkeedw8EDGriLA",
     imageSrc: "/assets/shantou_noodles.png",
     imageAlt: "陳家汕頭麵",
+    highlight: true,
+    stamp: "推薦！",
   },
   {
     time: "13:00",
@@ -97,6 +101,8 @@ export const day3Items: ItineraryItem[] = [
     mapsUrl: "https://maps.google.com/?q=奇美博物館",
     imageSrc: "/assets/chimei_egypt.png",
     imageAlt: "奇美博物館 埃及展",
+    highlight: true,
+    stamp: "必去！",
     internalHtml:
       '與大英博物館共同合作，匯聚280件作品，是歷年埃及法老文物來臺規模之最！<br><br>特別推薦2樓的VR沉浸探險【消失的法老】：完整還原最大、最古老的「古夫金字塔」，深入探訪解鎖金字塔內的神祕禁區。<a href="https://chimeimuseum.fonticket.com/ticket/Online_VR" target="_blank" rel="noopener noreferrer" class="inline-link-green">線上預售票$680/人，奇美博物館官網獨賣。</a>',
   },

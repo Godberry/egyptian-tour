@@ -14,20 +14,29 @@ export default function HotelPage() {
         bannerLeft="Provintia Hotel"
         bannerRight="天下南隅"
       />
-      <main className="container">
+      <main id="main-content" className="container">
         <div
           className="flex-row mobile-col"
           style={{ margin: "0 auto", maxWidth: 900, gap: "4rem", alignItems: "center" }}
         >
-          <div style={{ flexShrink: 0, display: "flex", justifyContent: "center" }}>
-            <img src={assetPath("/assets/hotel_provintia.png")} alt="天下南隅" className="hotel-img" />
+          <div style={{ flexShrink: 0, display: "flex", justifyContent: "center", position: "relative" }}>
+            <img
+              src={assetPath("/assets/hotel_provintia.png")}
+              alt="天下南隅飯店外觀"
+              width={420}
+              height={300}
+              loading="eager"
+              decoding="async"
+              className="hotel-img"
+            />
+            <span className="hotel-zzz" aria-hidden="true">💤</span>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "1.5rem" }}>
             <div>
-              <h3 style={{ fontSize: "2.6rem", lineHeight: 1.2, marginBottom: "0.5rem", letterSpacing: "2px" }}>
+              <h2 style={{ fontSize: "2.6rem", lineHeight: 1.2, marginBottom: "0.5rem", letterSpacing: "2px", color: "var(--retro-red)", fontWeight: 900 }}>
                 天下南隅
-              </h3>
+              </h2>
               <p style={{ color: "var(--retro-green)", fontSize: "1.2rem" }}>
                 台南市最高質感的摩登復古飯店
               </p>

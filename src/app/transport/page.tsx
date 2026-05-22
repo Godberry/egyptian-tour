@@ -35,7 +35,7 @@ export default function TransportPage() {
   return (
     <>
       <SubHero title="交通資訊" bannerLeft="交通攻略" bannerRight="行前必看" />
-      <main className="container">
+      <main id="main-content" className="container">
         <div
           style={{
             display: "grid",
@@ -80,8 +80,12 @@ export default function TransportPage() {
                   <div>{leg.depart.place}</div>
                 </div>
 
-                <div style={{ fontSize: "1.5rem", color: "var(--retro-green)" }}>
-                  →
+                <div
+                  className="transport-arrow"
+                  aria-hidden="true"
+                  style={{ flex: 1, minWidth: 80 }}
+                >
+                  <span className="transport-emoji">{leg.label === "去程" ? "🚌" : "🚄"}</span>
                 </div>
 
                 <div style={{ textAlign: "center" }}>

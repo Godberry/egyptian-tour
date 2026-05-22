@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <main className="container">
+      <main id="main-content" className="container">
         {days.map((d, i) => (
           <DaySection key={d.id} day={d} items={itemsList[i]} isFirst={i === 0} />
         ))}

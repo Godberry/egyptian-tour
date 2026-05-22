@@ -29,29 +29,59 @@ export default function MemoriesPage() {
         </div>
       </header>
 
-      <main className="container">
-        <div className="day-tabs">
+      <main id="main-content" className="container">
+        <div className="day-tabs" role="tablist" aria-label="行程日期">
           {days.map((d) => (
             <button
               key={d.id}
+              role="tab"
+              id={`day-tab-${d.id}`}
+              aria-selected={active === d.id}
+              aria-controls={`day-panel-${d.id}`}
+              tabIndex={active === d.id ? 0 : -1}
               className={`day-tab ${active === d.id ? "active" : ""}`}
               onClick={() => setActive(d.id)}
             >
-              <span className="tab-icon">{d.icon}</span>
+              <span className="tab-icon" aria-hidden="true">{d.icon}</span>
               <span className="tab-label">{d.label}</span>
               <span className="tab-date">{d.date}</span>
             </button>
           ))}
         </div>
 
-        {days.map((d) => (
-          <div key={d.id} className={`day-panel ${active === d.id ? "active" : ""}`}>
+        {days.map((d) => {
+          const filled = 0;
+          const percent = Math.round((filled / d.slots) * 100);
+          return (
+          <div
+            key={d.id}
+            role="tabpanel"
+            id={`day-panel-${d.id}`}
+            aria-labelledby={`day-tab-${d.id}`}
+            hidden={active !== d.id}
+            className={`day-panel ${active === d.id ? "active" : ""}`}
+          >
             <div className="day-title-wrapper">
               {d.chars.map((c, i) => (
                 <div key={i} className="circle-text">{c}</div>
               ))}
               <span className="date-text">{d.full}</span>
             </div>
+            <div
+              className="memory-progress"
+              role="progressbar"
+              aria-valuenow={filled}
+              aria-valuemin={0}
+              aria-valuemax={d.slots}
+              aria-label={`第 ${d.id} 日打卡進度`}
+            >
+              <span aria-hidden="true">📸</span>
+              <div className="memory-progress-bar">
+                <div className="memory-progress-fill" style={{ width: `${percent}%` }} />
+              </div>
+              <span>{filled}/{d.slots}</span>
+            </div>
+            <p className="memory-hint">點擊空格上傳照片（行程結束後填入回憶）</p>
             <div className="memory-grid">
               {Array.from({ length: d.slots }).map((_, i) => (
                 <div key={i} className="memory-slot">
@@ -63,7 +93,8 @@ export default function MemoriesPage() {
               ))}
             </div>
           </div>
-        ))}
+        );
+        })}
       </main>
     </>
   );

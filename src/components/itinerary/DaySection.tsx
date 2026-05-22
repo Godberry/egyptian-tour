@@ -11,8 +11,15 @@ export function DaySection({
   isFirst?: boolean;
 }) {
   return (
-    <section className="day-section" id={isFirst ? day.id : undefined}>
-      <div className="day-title-wrapper">
+    <section
+      className="day-section"
+      id={isFirst ? day.id : undefined}
+      aria-labelledby={`${day.id}-heading`}
+    >
+      <h2 id={`${day.id}-heading`} className="sr-only">
+        {day.chars.join("")}　{day.date}
+      </h2>
+      <div className="day-title-wrapper" aria-hidden="true">
         {day.chars.map((c, i) => (
           <div key={i} className="circle-text">{c}</div>
         ))}

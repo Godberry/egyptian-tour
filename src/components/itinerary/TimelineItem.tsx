@@ -1,11 +1,15 @@
 import type { ItineraryItem } from "./itinerary-data";
 import { assetPath } from "@/lib/asset-path";
+import { Stamp } from "@/components/decor/Stamp";
 
 export function TimelineItem({ item }: { item: ItineraryItem }) {
   const cardBody = (
     <div className="desc">
       <div className="desc-head">
-        <h3>{item.title}</h3>
+        <h3>
+          {item.highlight && <span className="title-spark" aria-hidden="true">✨</span>}
+          {item.title}
+        </h3>
         {item.mapsUrl && (
           <a
             href={item.mapsUrl}
@@ -29,15 +33,31 @@ export function TimelineItem({ item }: { item: ItineraryItem }) {
     item.variant === "dashed"
       ? "content card dashed"
       : item.variant === "card"
-      ? "content card"
-      : "content flex-row";
+      ? `content card${item.highlight ? " highlight" : ""}`
+      : `content flex-row${item.highlight ? " highlight" : ""}`;
+
+  const isDashed = item.variant === "dashed";
 
   return (
     <div className="timeline-item">
-      <div className="time-badge">{item.time}</div>
-      <div className={cardClass}>
+      <div className="time-badge" aria-label={`時間 ${item.time}`}>{item.time}</div>
+      <div
+        className={cardClass}
+        aria-label={isDashed ? "待安排項目" : undefined}
+      >
+        {item.highlight && item.stamp && (
+          <Stamp text={item.stamp} className="card-stamp" />
+        )}
         {item.variant === "flex-row" && item.imageSrc && (
-          <img src={assetPath(item.imageSrc)} alt={item.imageAlt || item.title} className="retro-img" />
+          <img
+            src={assetPath(item.imageSrc)}
+            alt={item.imageAlt || ""}
+            width={200}
+            height={200}
+            loading="lazy"
+            decoding="async"
+            className="retro-img"
+          />
         )}
         {cardBody}
       </div>
