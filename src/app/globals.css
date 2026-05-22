@@ -926,29 +926,33 @@ p {
   border-top: 4px dashed var(--retro-green);
   transform: translateY(-2px);
 }
-.transport-emoji {
+.transport-vehicle {
   position: absolute;
   left: 0;
   bottom: calc(50% + 2px);
-  font-size: 1.8rem;
-  line-height: 1;
+  line-height: 0;
   filter: drop-shadow(2px 2px 0 var(--retro-blue));
+  transform-origin: 50% 100%;
+}
+.transport-vehicle--bus {
+  --vehicle-width: 60px;
+}
+.transport-vehicle--hsr {
+  --vehicle-width: 80px;
 }
 
 @keyframes transport-glide-bus {
-  0%   { left: 0; }
-  8%   { left: 0; }
-  92%  { left: calc(100% - 2rem); }
-  100% { left: calc(100% - 2rem); }
+  0%, 8%    { left: 0; }
+  92%, 100% { left: calc(100% - var(--vehicle-width)); }
 }
 @keyframes bus-bump {
-  0%, 100% { transform: scaleX(-1) translateY(0); }
-  20%      { transform: scaleX(-1) translateY(-1.5px); }
-  40%      { transform: scaleX(-1) translateY(0.5px); }
-  60%      { transform: scaleX(-1) translateY(-1px); }
-  80%      { transform: scaleX(-1) translateY(0.8px); }
+  0%, 100% { transform: translateY(0); }
+  20%      { transform: translateY(-1.5px); }
+  40%      { transform: translateY(0.5px); }
+  60%      { transform: translateY(-1px); }
+  80%      { transform: translateY(0.8px); }
 }
-.transport-emoji--bus {
+.transport-vehicle--bus {
   animation:
     transport-glide-bus 14s cubic-bezier(0.45, 0, 0.55, 1) infinite,
     bus-bump 0.45s ease-in-out infinite;
@@ -956,24 +960,24 @@ p {
 
 @keyframes transport-glide-hsr {
   0%, 10%   { left: 0; }
-  90%, 100% { left: calc(100% - 2rem); }
+  90%, 100% { left: calc(100% - var(--vehicle-width)); }
 }
 @keyframes hsr-lean {
-  0%, 12%   { transform: scaleX(-1) skewX(0deg); }
-  25%, 75%  { transform: scaleX(-1) skewX(-4deg); }
-  88%, 100% { transform: scaleX(-1) skewX(0deg); }
+  0%, 12%   { transform: skewX(0deg); }
+  25%, 75%  { transform: skewX(4deg); }
+  88%, 100% { transform: skewX(0deg); }
 }
-.transport-emoji--hsr {
+.transport-vehicle--hsr {
   animation:
     transport-glide-hsr 18s cubic-bezier(0.7, 0, 0.3, 1) infinite,
     hsr-lean 18s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .transport-emoji--bus,
-  .transport-emoji--hsr {
+  .transport-vehicle--bus,
+  .transport-vehicle--hsr {
     animation: none;
-    left: calc(50% - 1rem);
+    left: calc(50% - var(--vehicle-width) / 2);
   }
 }
 

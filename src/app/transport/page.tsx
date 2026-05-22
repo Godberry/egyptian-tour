@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SubHero } from "@/components/hero/SubHero";
+import { Bus } from "@/components/decor/Bus";
+import { HighSpeedRail } from "@/components/decor/HighSpeedRail";
 
 export const metadata: Metadata = {
   title: "交通資訊 | 台南柑仔蜜之旅",
@@ -85,11 +87,11 @@ export default function TransportPage() {
                   aria-hidden="true"
                   style={{ flex: 1, minWidth: 80 }}
                 >
-                  <span
-                    className={`transport-emoji transport-emoji--${leg.label === "去程" ? "bus" : "hsr"}`}
-                  >
-                    {leg.label === "去程" ? "🚌" : "🚄"}
-                  </span>
+                  {leg.label === "去程" ? (
+                    <Bus className="transport-vehicle transport-vehicle--bus" />
+                  ) : (
+                    <HighSpeedRail className="transport-vehicle transport-vehicle--hsr" />
+                  )}
                 </div>
 
                 <div style={{ textAlign: "center" }}>
