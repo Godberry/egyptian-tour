@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SubHero, BackToHomeButton } from "@/components/hero/SubHero";
+import { assetPath } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
   title: "住宿資訊 | 天下南隅",
@@ -19,7 +20,7 @@ export default function HotelPage() {
           style={{ margin: "0 auto", maxWidth: 900, gap: "4rem", alignItems: "center" }}
         >
           <div style={{ flexShrink: 0, display: "flex", justifyContent: "center" }}>
-            <img src="/assets/hotel_provintia.png" alt="天下南隅" className="hotel-img" />
+            <img src={assetPath("/assets/hotel_provintia.png")} alt="天下南隅" className="hotel-img" />
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "1.5rem" }}>

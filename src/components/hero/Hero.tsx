@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { assetPath } from "@/lib/asset-path";
 
 const stickers = [
   { src: "/assets/icon_scooter.png", alt: "機車", cls: "sticker-1" },
@@ -14,14 +14,13 @@ export function Hero() {
       <div className="hero-bg-texture" />
 
       {stickers.map((s) => (
-        <Image
+        <img
           key={s.alt}
-          src={s.src}
+          src={assetPath(s.src)}
           alt={s.alt}
           width={140}
           height={140}
           className={`floating-sticker ${s.cls}`}
-          priority
         />
       ))}
 

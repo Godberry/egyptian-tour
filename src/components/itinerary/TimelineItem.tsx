@@ -1,4 +1,5 @@
 import type { ItineraryItem } from "./itinerary-data";
+import { assetPath } from "@/lib/asset-path";
 
 export function TimelineItem({ item }: { item: ItineraryItem }) {
   const cardBody = (
@@ -36,7 +37,7 @@ export function TimelineItem({ item }: { item: ItineraryItem }) {
       <div className="time-badge">{item.time}</div>
       <div className={cardClass}>
         {item.variant === "flex-row" && item.imageSrc && (
-          <img src={item.imageSrc} alt={item.imageAlt || item.title} className="retro-img" />
+          <img src={assetPath(item.imageSrc)} alt={item.imageAlt || item.title} className="retro-img" />
         )}
         {cardBody}
       </div>
