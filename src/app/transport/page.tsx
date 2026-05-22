@@ -85,7 +85,11 @@ export default function TransportPage() {
                   aria-hidden="true"
                   style={{ flex: 1, minWidth: 80 }}
                 >
-                  <span className="transport-emoji">{leg.label === "去程" ? "🚌" : "🚄"}</span>
+                  <span
+                    className={`transport-emoji transport-emoji--${leg.label === "去程" ? "bus" : "hsr"}`}
+                  >
+                    {leg.label === "去程" ? "🚌" : "🚄"}
+                  </span>
                 </div>
 
                 <div style={{ textAlign: "center" }}>

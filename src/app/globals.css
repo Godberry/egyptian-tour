@@ -648,10 +648,6 @@ p {
 }
 
 /* Transport arrow */
-@keyframes transport-glide {
-  0%, 5%    { left: 0; }
-  95%, 100% { left: calc(100% - 2rem); }
-}
 .transport-arrow {
   position: relative;
   height: 36px;
@@ -674,8 +670,49 @@ p {
   bottom: calc(50% + 2px);
   font-size: 1.8rem;
   line-height: 1;
-  animation: transport-glide 5s ease-in-out infinite;
   filter: drop-shadow(2px 2px 0 var(--retro-blue));
+}
+
+@keyframes transport-glide-bus {
+  0%   { left: 0; }
+  8%   { left: 0; }
+  92%  { left: calc(100% - 2rem); }
+  100% { left: calc(100% - 2rem); }
+}
+@keyframes bus-bump {
+  0%, 100% { transform: scaleX(-1) translateY(0); }
+  20%      { transform: scaleX(-1) translateY(-1.5px); }
+  40%      { transform: scaleX(-1) translateY(0.5px); }
+  60%      { transform: scaleX(-1) translateY(-1px); }
+  80%      { transform: scaleX(-1) translateY(0.8px); }
+}
+.transport-emoji--bus {
+  animation:
+    transport-glide-bus 14s cubic-bezier(0.45, 0, 0.55, 1) infinite,
+    bus-bump 0.45s ease-in-out infinite;
+}
+
+@keyframes transport-glide-hsr {
+  0%, 10%   { left: 0; }
+  90%, 100% { left: calc(100% - 2rem); }
+}
+@keyframes hsr-lean {
+  0%, 12%   { transform: skewX(0deg); }
+  25%, 75%  { transform: skewX(4deg); }
+  88%, 100% { transform: skewX(0deg); }
+}
+.transport-emoji--hsr {
+  animation:
+    transport-glide-hsr 18s cubic-bezier(0.7, 0, 0.3, 1) infinite,
+    hsr-lean 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transport-emoji--bus,
+  .transport-emoji--hsr {
+    animation: none;
+    left: calc(50% - 1rem);
+  }
 }
 
 /* Hotel page */
