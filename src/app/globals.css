@@ -934,11 +934,25 @@ p {
   filter: drop-shadow(2px 2px 0 var(--retro-blue));
   transform-origin: 50% 100%;
 }
+.transport-vehicle svg {
+  width: var(--vehicle-width);
+  height: auto;
+  display: block;
+}
 .transport-vehicle--bus {
   --vehicle-width: 60px;
 }
 .transport-vehicle--hsr {
   --vehicle-width: 80px;
+}
+
+@media (max-width: 768px) {
+  .transport-vehicle--bus { --vehicle-width: 44px; }
+  .transport-vehicle--hsr { --vehicle-width: 56px; }
+}
+@media (max-width: 480px) {
+  .transport-vehicle--bus { --vehicle-width: 36px; }
+  .transport-vehicle--hsr { --vehicle-width: 44px; }
 }
 
 @keyframes transport-glide-bus {
