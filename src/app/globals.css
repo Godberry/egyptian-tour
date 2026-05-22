@@ -288,12 +288,12 @@ p {
   align-items: center;
   font-size: 1.5rem;
   font-weight: 900;
-  text-shadow:
-    -2px -2px 0 var(--retro-yellow),
-     2px -2px 0 var(--retro-yellow),
-    -2px  2px 0 var(--retro-yellow),
-     2px  2px 0 var(--retro-yellow);
+  letter-spacing: 0.12em;
   border-top: 4px dashed var(--retro-yellow);
+}
+.hero-banner-bottom > span {
+  -webkit-text-stroke: 1px var(--retro-green);
+  paint-order: stroke fill;
 }
 
 .btn-retro {
@@ -649,22 +649,32 @@ p {
 
 /* Transport arrow */
 @keyframes transport-glide {
-  0%   { transform: translateX(-10%); }
-  100% { transform: translateX(110%); }
+  0%, 5%    { left: 0; }
+  95%, 100% { left: calc(100% - 2rem); }
 }
 .transport-arrow {
   position: relative;
   height: 36px;
   display: flex;
   align-items: center;
-  border-top: 4px dashed var(--retro-green);
   margin: 0 0.5rem;
+}
+.transport-arrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 4px dashed var(--retro-green);
+  transform: translateY(-2px);
 }
 .transport-emoji {
   position: absolute;
-  top: -1.2rem;
+  left: 0;
+  bottom: calc(50% + 2px);
   font-size: 1.8rem;
-  animation: transport-glide 3.5s ease-in-out infinite;
+  line-height: 1;
+  animation: transport-glide 5s ease-in-out infinite;
   filter: drop-shadow(2px 2px 0 var(--retro-blue));
 }
 
