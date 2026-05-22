@@ -959,9 +959,9 @@ p {
   90%, 100% { left: calc(100% - 2rem); }
 }
 @keyframes hsr-lean {
-  0%, 12%   { transform: skewX(0deg); }
-  25%, 75%  { transform: skewX(4deg); }
-  88%, 100% { transform: skewX(0deg); }
+  0%, 12%   { transform: scaleX(-1) skewX(0deg); }
+  25%, 75%  { transform: scaleX(-1) skewX(-4deg); }
+  88%, 100% { transform: scaleX(-1) skewX(0deg); }
 }
 .transport-emoji--hsr {
   animation:
